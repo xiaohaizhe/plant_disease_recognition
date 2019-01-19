@@ -18,7 +18,9 @@ def __load_data(submit_file, reference_file):
     for item in submit_data:
         submit_dict[item['image_id']] = item['label_id']
     for item in ref_data:
-        ref_dict[item['image_id']] = int(item['label_id'])
+        print(item['disease_class'])
+        ref_dict[item['image_id']] = item['disease_class']
+        #ref_dict[item['image_id']] = int(item['disease_class'])
     return submit_dict, ref_dict
 
 
@@ -35,7 +37,7 @@ def __eval_result(submit_dict, ref_dict):
 
         if value in submit_dict[key][:3]:
             right_count += 1
-
+    print("right count：" + right_count)
     result['score'] = str(float(right_count)/max(len(ref_dict), 1e-5))
     return result
 

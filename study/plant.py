@@ -8,6 +8,7 @@ import json
 import os
 import plant_input
 import network
+import matplotlib.pyplot as plt
 
 BATCH_SIZE = 32
 IMAGE_SIZE = 128
@@ -18,14 +19,15 @@ LOGNAME = 'plant'
 
 def train(train_dir, annotations, max_step, checkpoint_dir='./checkpoint/'):
     # train the model
+    print("train************************")
     plant_data = plant_input.plant_data_fn(train_dir, annotations)
     features = tf.placeholder("float32", shape=[None, IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNEL], name="features")
     labels = tf.placeholder("float32", [None], name="labels")
-    one_hot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=80)
+    one_hot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=61)
     train_step, cross_entropy, logits, keep_prob = network.inference(features, one_hot_labels)
     correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(one_hot_labels, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-
+    costs = []
     with tf.Session() as sess:
         saver = tf.train.Saver()
         ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
@@ -43,23 +45,40 @@ def train(train_dir, annotations, max_step, checkpoint_dir='./checkpoint/'):
         for step in range(start_step, start_step + max_step):
             start_time = time.time()
             x, y = plant_data.next_batch(BATCH_SIZE, IMAGE_SIZE)
-            sess.run(train_step, feed_dict={features: x, labels: y, keep_prob: 0.5})
+            sess.run(train_step, feed_dict={features: x, labels: y, keep_prob: 0.7})
             if step % 50 == 0:
                 train_accuracy = sess.run(accuracy, feed_dict={features: x, labels: y, keep_prob: 1})
                 train_loss = sess.run(cross_entropy, feed_dict={features: x, labels: y, keep_prob: 1})
+                costs.append(train_loss)
                 duration = time.time() - start_time
                 logger.info("step %d: training accuracy %g, loss is %g (%0.3f sec)" % (step, train_accuracy, train_loss, duration))
             if step % 1000 == 1:
                 saver.save(sess, CHECKFILE, global_step=step)
                 print('writing checkpoint at step %s' % step)
 
+        #X_train, Y_train = plant_data.whole_batch(IMAGE_SIZE)
+        print("gettting whole training examples-------------------------------")
+        X_train, Y_train = plant_data.not_actual_whole_batch(151, IMAGE_SIZE)
+        #train_accuracy = accuracy.eval({features: X_train, labels: Y_train})
+        print("whole traininig accuracy-------------------------------")
+        cor_prediction = sess.run(correct_prediction, feed_dict={features: X_train, labels: Y_train, keep_prob: 1})
+        print("correct prediction:", cor_prediction)
+        train_accuracy = sess.run(accuracy, feed_dict={features: X_train, labels: Y_train, keep_prob: 1})
+        print("Train Accuracy:", train_accuracy)
+        plt.plot(np.squeeze(costs))
+        plt.ylabel('cost')
+        plt.xlabel('iterations ')
+        plt.title("Learning rate ")
+        plt.show()
+
 
 def test(test_dir, checkpoint_dir='./checkpoint/'):
-    # predict the result 
+    # predict the result
+    print("test************************")
     test_images = os.listdir(test_dir)
     features = tf.placeholder("float32", shape=[None, IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNEL], name="features")
     labels = tf.placeholder("float32", [None], name="labels")
-    one_hot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=80)
+    one_hot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=61)
     train_step, cross_entropy, logits, keep_prob = network.inference(features, one_hot_labels)
     #values, indices = tf.nn.top_k(logits, 3)
     values, indices = tf.nn.top_k(logits, 1)
@@ -132,7 +151,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--max_step',
         type=int,
-        default=200,
+        default=151,
         help="""\
         determine maximum training step\
         """

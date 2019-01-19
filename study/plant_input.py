@@ -57,6 +57,32 @@ class plant_data_fn(object):
         self.end = index
         return np.array(img_data), np.array(img_label)
 
+    def whole_batch(self, img_size=32):
+        # fetch a batch of images
+
+        img_data = []
+        img_label = []
+        index = 0
+        while len(img_data) < self.Length:
+            img_data.append(self.img_resize(os.path.join(self.image_path, self.img_name[index]), img_size))
+            img_label.append(self.data_dict[self.img_name[index]])
+            index += 1
+        return np.array(img_data), np.array(img_label)
+
+
+    def not_actual_whole_batch(self, batch_size,img_size=32):
+        # fetch a batch of images
+
+        img_data = []
+        img_label = []
+        index = 0
+        while len(img_data) < batch_size:
+            img_data.append(self.img_resize(os.path.join(self.image_path, self.img_name[index]), img_size))
+            img_label.append(self.data_dict[self.img_name[index]])
+            index += 1
+
+        return np.array(img_data), np.array(img_label)
+
 
 def img_resize(imgpath, img_size):
         img = Image.open(imgpath)
