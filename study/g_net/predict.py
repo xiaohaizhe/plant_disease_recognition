@@ -69,7 +69,7 @@ if __name__ == '__main__':
     class_nums = 61 #类别个数
     image_dir = '../plant_disease/11.14/ai_challenger_pdr2018_testa_20181023/AgriculturalDisease_testA/images'
     labels_filename = '../plant_disease/11.14/label_cn.txt' #类别名称纪录文件，cn为中文名，en为英文名称
-    models_path = 'models/model.ckpt-10000'
+    models_path = 'models/model.ckpt'
 
     batch_size = 1  #
     resize_height = 299  # 指定存储图片高度
