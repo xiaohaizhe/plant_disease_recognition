@@ -45,23 +45,23 @@ def predict(models_path, image_dir, labels_filename, labels_nums, data_format):
         raise Exception('no checkpoint find')
 
     images_list=glob.glob(os.path.join(image_dir,'*.jpg'))
+    result = []
+    temp_dict = {}
     for image_path in images_list:
         im=read_image(image_path,resize_height,resize_width,normalization=True)
         im=im[np.newaxis,:]
         #pred = sess.run(f_cls, feed_dict={x:im, keep_prob:1.0})
         pre_score,pre_label = sess.run([score,class_id], feed_dict={input_images:im})
         max_score=pre_score[0,pre_label]
-        print "{} is: pre labels:{},name:{} score: {}".format(image_path,pre_label,labels[pre_label], max_score)
+        print("{} is: pre labels:{},name:{} score: {}".format(image_path,pre_label,labels[pre_label], max_score))
 
-        result = []
-        temp_dict = {}
         temp_dict['image_id'] = image_path
         temp_dict['label_id'] = pre_label
         result.append(temp_dict)
         
-        with open('submit.json', 'w') as f:
-            json.dump(result, f)
-            print('write result json, num is %d' % len(result))
+    with open('submit.json', 'w') as f:
+        json.dump(result, f)
+        print('write result json, num is %d' % len(result))
     sess.close()
 
 
