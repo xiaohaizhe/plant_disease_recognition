@@ -1,0 +1,343 @@
+html{font-size: 32px;touch-action: none;height: 100%;overflow-x:hidden;}
+
+@media (min-device-width : 320px) {
+  html{font-size: 50px;}
+}
+@media (min-device-width : 360px) {
+  html{font-size: 50px;}
+}
+/* iphone 6  */
+@media (min-device-width : 375px) {
+   html{font-size: 64px;}
+}
+/*  iphone6 plus  */
+@media (min-device-width : 414px) {
+    html{font-size: 75px;}
+}
+#root{
+  height: 100%;
+  width: 100%;
+  max-width: 768px;
+}
+body {
+  margin: 0;
+  overflow-x:hidden;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: auto;
+}
+.am-navbar-light .am-navbar-title{
+  color: #515151;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.widthFix{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+    /* background:url('http://www.freelycar.com/management/bac.jpg') no-repeat ; */
+    /* background-size: auto 100%; */
+}
+.choose-btn .choose-btn-add {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+/* .btn-box{
+  width: 100%;
+  position: absolute;
+  bottom: 1rem;
+} */
+.discribe-info {
+  height: auto;
+  padding: 36% 0;
+  font-size: 0.45rem;
+  text-align: center;
+  color: #515151;
+}
+.bg{
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../src/assets/bg1.jpg)
+}
+.btn-box {
+  position:absolute;
+  bottom:0;
+  width:200%;
+  height:90%;
+  text-align:center;
+  margin-left:-50%;
+  margin-bottom:-70%;
+  border-radius:80%;
+  box-shadow: 0px 0px 20px 0px rgba(220,220,220,0.5);
+  background:#fff;
+  overflow:hidden;
+}
+.choose-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 1rem auto 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #07aaa5;
+  box-shadow: 0 0 0.15rem 0 rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.picture {
+    display: block;
+    position: absolute;
+    width: 3.2rem;
+    height: 3.2rem;
+    left: 50%;
+    font-size: 0;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+.knowledge{
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.book{
+  background-image: url(../src/assets/book.png)
+}
+.camera{
+  background-image: url(../src/assets/camera.png)
+}
+.clIcon{
+  width: 0.5rem;
+  height: 0.5rem;
+  background-size: cover;
+  display: inline-block;
+}
+.clBtn .am-button{
+  width: 50%;
+  border-radius: 0;
+}
+.clBtn .am-button::before{
+  border-radius: 0 !important;
+}
+.flexCenter{
+  display: flex;
+  align-items: center;
+}
+.resultPic{
+  width: 100%;
+  /* height: 200px; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.am-icon {
+  fill: currentColor;
+  background-size: cover;
+  width: 0.35rem;
+  height:  0.35rem;
+}
+
+.my-accordion{
+  margin: 0.2rem;
+}
+.am-accordion-item{
+  margin-bottom: 0.2rem;
+}
+.am-list-item {
+  padding-left: 0.4rem;
+}
+.clCard{
+  font-size: 0.25rem;
+  margin: 0.2rem;
+  padding: 0.2rem;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ebeef5;
+  background-color: #fff;
+  overflow: hidden;
+  color: #303133;
+  transition: .3s;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
+.clCard .plant{
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  border: 0.15rem solid #cccccc;
+  overflow: hidden;
+}
+.plantDetail{
+  /* width: 3rem;
+  height: 3rem; */
+  margin: 0 auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.det{
+  position: absolute;
+  bottom: 0;
+  height: 0.6rem;
+  line-height: 0.5rem;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  background-color: #7779;
+  margin: 0;
+  font-size: 0.22rem;
+}
+.noDet{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  background-color: #7779;
+  margin: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 0.3rem;
+}
+.green{
+  color: #07aaa5;
+}
+.appleGood{
+  background-image: url(../src/assets/appleGood.jpg)
+}
+.appleScab{
+  background-image: url(../src/assets/appleScab.jpg)
+}
+.appleFrogeyeSpot{
+  background-image: url(../src/assets/appleFrogeyeSpot.jpg)
+}
+.cedarAppleRust{
+  background-image: url(../src/assets/cedarAppleRust.jpg)
+}
+.cherryGood{
+  background-image: url(../src/assets/cherryGood.jpg)
+}
+.cherryPowderyMildew{
+  background-image: url(../src/assets/cherryPowderyMildew.jpg)
+}
+.cornGood{
+  background-image: url(../src/assets/cornGood.jpg)
+}
+.cercospora{
+  background-image: url(../src/assets/cercospora.jpg)
+}
+.pucciniaPolysora{
+  background-image: url(../src/assets/pucciniaPolysora.jpg)
+}
+.cornCurvulariaLeaf{
+  background-image: url(../src/assets/cornCurvulariaLeaf.jpg)
+}
+.maizeDwarf{
+  background-image: url(../src/assets/maizeDwarf.jpg)
+}
+.grapeGood{
+  background-image: url(../src/assets/grapeGood.jpg)
+}
+.grapeBlackRot{
+  background-image: url(../src/assets/grapeBlackRot.jpg)
+}
+.grapeBlackMeasles{
+  background-image: url(../src/assets/grapeBlackMeasles.jpg)
+}
+.grapeLeafBlight{
+  background-image: url(../src/assets/grapeLeafBlight.jpg)
+}
+.citrusGood{
+  background-image: url(../src/assets/citrusGood.jpg)
+}
+.citrusGreeningJune{
+  background-image: url(../src/assets/citrusGreeningJune.jpg)
+}
+.peachGood{
+  background-image: url(../src/assets/peachGood.jpg)
+}
+.peachBacterial{
+  background-image: url(../src/assets/peachBacterial.jpg)
+}
+.pepperGood{
+  background-image: url(../src/assets/pepperGood.jpg)
+}
+.pepperScab{
+  background-image: url(../src/assets/pepperScab.jpg)
+}
+.potatoGood{
+  background-image: url(../src/assets/potatoGood.jpg)
+}
+.potatoEarly{
+  background-image: url(../src/assets/potatoEarly.jpg)
+}
+.potatoLate{
+  background-image: url(../src/assets/potatoLate.jpg)
+}
+.strawberryGood{
+  background-image: url(../src/assets/strawberryGood.jpg)
+}
+.strawberryScorch{
+  background-image: url(../src/assets/strawberryScorch.jpg)
+}
+.tomatoGood{
+  background-image: url(../src/assets/tomatoGood.jpg)
+}
+.tomatoPowdery{
+  background-image: url(../src/assets/tomatoPowdery.jpg)
+}
+.tomatoBacterial{
+  background-image: url(../src/assets/tomatoBacterial.jpg)
+}
+.tomatoEarly{
+  background-image: url(../src/assets/tomatoEarly.jpg)
+}
+.tomatoLate{
+  background-image: url(../src/assets/tomatoLate.jpg)
+}
+.tomatoLeaf{
+  background-image: url(../src/assets/tomatoLeaf.jpg)
+}
+.tomatoTarget{
+  background-image: url(../src/assets/tomatoTarget.jpg)
+}
+.tomatoSeptoria{
+  background-image: url(../src/assets/tomatoSeptoria.jpg)
+}
+.tomatoSpider{
+  background-image: url(../src/assets/tomatoSpider.jpg)
+}
+.tomatoYLCV{
+  background-image: url(../src/assets/tomatoYLCV.jpg)
+}
+.tomatoTomv{
+  background-image: url(../src/assets/tomatoTomv.jpg)
+}
