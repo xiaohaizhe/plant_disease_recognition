@@ -1,4 +1,4 @@
-Flask==0.12.2
-tensorflow==1.11.0
-numpy==1.15.3
-pillow==5.4.1
+Flask==1.0.2
+numpy==1.15.4
+Pillow==5.4.1
+tensorflow==1.13.1
