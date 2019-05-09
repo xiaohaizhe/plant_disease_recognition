@@ -27,7 +27,7 @@ export default class Result extends React.Component {
             for(let n=0;n<results.length;n++){
                 for(let i of knowledge){
                         let temp = i.illness.filter((element)=>{
-                            return (element.label.indexOf(results[n].label_id-0)>-1);
+                            return (element.label===(results[n].label_id-0));
                         })
                         if(temp.length>0){
                             results[n].detail = temp[0];
