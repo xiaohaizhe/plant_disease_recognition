@@ -17,8 +17,8 @@ import plant_utils
 
 # 全局
 app = Flask(__name__)
-FLASK_APP_HOST = '192.168.1.108'                                    # 服务启动地址
-FLASK_APP_PORT = 5000                                               # APP服务启动端口
+FLASK_APP_HOST = '0.0.0.0'                                          # 服务启动地址
+FLASK_APP_PORT = 5050                                               # APP服务启动端口
 FLASK_APP_DEBUG = False                                             # 服务调试模式
 IMAGE_GNET_SIZE = 299                                               # 图片格式化尺寸
 CLASS_NUMBER = 38                                                   # 图片分类个数
