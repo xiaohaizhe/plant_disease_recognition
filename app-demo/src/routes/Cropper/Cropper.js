@@ -1,7 +1,7 @@
 import React from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
-import {Button} from 'antd-mobile';
+import {Button,Toast} from 'antd-mobile';
 
 export default class CropperPic extends React.Component {
     constructor(props) {
@@ -23,19 +23,18 @@ export default class CropperPic extends React.Component {
             this.props.history.push({pathname:'/'})
         }
         
-       
     }
     async submit(){
         let that = this;
-        let result = this.refs.cropper.getCroppedCanvas();
+        let result = this.refs.cropper.getCroppedCanvas({width: 299,height: 299});
         let resultpic = result.toDataURL();
         result.toBlob(async function(blob) {
             let formData = new FormData();
             let test = new Date().getTime()+".png";
             formData.append("file",blob,test);
-            // Toast.loading('识别中', 50000, () => {
-            //     console.log('Load complete !!!');
-            //   });
+            Toast.loading('识别中', 50000, () => {
+                console.log('Load complete !!!');
+              });
             //上传
             let resp = await fetch("/app/upload",{
                 method:"POST",
@@ -43,7 +42,7 @@ export default class CropperPic extends React.Component {
                 body:formData
             })
             let responseJson = await resp.json();
-            // Toast.hide();
+            Toast.hide();
             that.props.history.push({pathname:'/Result',query:{resultpic:resultpic,results:responseJson.result}})
           });
         
